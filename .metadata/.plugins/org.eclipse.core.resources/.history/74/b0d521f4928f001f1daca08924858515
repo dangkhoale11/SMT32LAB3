@@ -12,7 +12,6 @@
 int keyReg0[NO_BUTTONS + 1];
 int keyReg1[NO_BUTTONS + 1];
 int keyReg2[NO_BUTTONS + 1];
-
 int keyReg3[NO_BUTTONS + 1]; // store the old value
 
 int button_flag[NO_BUTTONS + 1];
