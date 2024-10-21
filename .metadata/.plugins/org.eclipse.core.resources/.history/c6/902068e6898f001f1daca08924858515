@@ -1,0 +1,20 @@
+/*
+ * button.c
+ *
+ *  Created on: Oct 21, 2024
+ *      Author: ADMIN
+ */
+
+#ifndef SRC_BUTTON_C_
+#define SRC_BUTTON_C_
+#include "button.h"
+
+int keyReg0 = NORMAL_STATE;
+int keyReg1 = NORMAL_STATE;
+int keyReg2 = NORMAL_STATE;
+
+void getkeyInput(GPIO_TypeDef *a, uint16_t b){
+
+}
+
+#endif /* SRC_BUTTON_C_ */

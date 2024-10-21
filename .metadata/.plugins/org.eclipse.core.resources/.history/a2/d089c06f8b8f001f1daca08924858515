@@ -1,0 +1,75 @@
+/*
+ * button.c
+ *
+ *  Created on: Oct 21, 2024
+ *      Author: ADMIN
+ */
+
+#ifndef SRC_BUTTON_C_
+#define SRC_BUTTON_C_
+#include "button.h"
+int button_flag[4];
+
+int keyReg0[4];
+int keyReg1[4];
+int keyReg2[4];
+int keyReg3[4];
+
+int button_counter[4];
+
+
+int TimerForKeyPress = 200;
+
+void initButton() {
+	for (int buttonNo = 1; buttonNo <= 3; buttonNo++) {
+		keyReg0[buttonNo] = NORMAL_STATE;
+		keyReg1[buttonNo] = NORMAL_STATE;
+		keyReg2[buttonNo] = NORMAL_STATE;
+		keyReg3[buttonNo] = NORMAL_STATE;
+		button_flag[buttonNo] = 0;
+		button_counter[buttonNo] = TimerForKeyPress;
+	}
+}
+
+void getOneKeyInput(int buttonNo, GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin) {
+	keyReg0[buttonNo] = keyReg1[buttonNo];
+	keyReg1[buttonNo] = keyReg2[buttonNo];
+	keyReg2[buttonNo] = HAL_GPIO_ReadPin(GPIOx, GPIO_Pin);
+	if ((keyReg0[buttonNo] == keyReg1[buttonNo]) && (keyReg1[buttonNo] == keyReg2[buttonNo])) {
+		if (keyReg3[buttonNo] != keyReg2[buttonNo]) {
+			keyReg3[buttonNo] = keyReg2[buttonNo];
+			if (keyReg2[buttonNo] == PRESSED_STATE) {
+				// TODO
+				subKeyProcess(buttonNo);
+				button_counter[buttonNo] = TimerForKeyPress;
+			} else {
+				button_counter[buttonNo]--;
+				if (button_counter[buttonNo] == 0)
+					keyReg3[buttonNo] = NORMAL_STATE;
+			}
+		}
+	}
+}
+
+void getKeyInput() {
+	//getOneKeyInput(1, Button1_GPIO_Port, Button1_Pin);
+	//getOneKeyInput(2, Button2_GPIO_Port, Button2_Pin);
+	//getOneKeyInput(3, Button3_GPIO_Port, Button3_Pin);
+}
+
+int isButtonPressed(int buttonNo) {
+
+
+	if (button_flag[buttonNo] == 1) {
+		button_flag[buttonNo] = 0;
+		return 1;
+	}
+	return 0;
+}
+
+void subKeyProcess(int buttonNo) {
+	button_flag[buttonNo] = 1;
+}
+
+
+#endif /* SRC_BUTTON_C_ */
