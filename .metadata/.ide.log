@@ -624,3 +624,9 @@
 2024-10-21 16:04:53,480 [INFO] ProjectBuilder:3789 - Time for Generating toolchain IDE Files: 1847mS.
 2024-10-21 16:04:53,481 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.
 2024-10-21 16:04:53,483 [INFO] ProjectBuilder:2457 - Time for Copy CMSIS : 0mS.
+2024-10-22 11:41:31,787 [INFO] Activator:177 - 
+
+
+2024-10-22 11:41:31,788 [INFO] Activator:178 - !SESSION log4j initialized
+2024-10-22 11:42:14,203 [INFO] RetryExec:97 - I/O exception (org.apache.http.NoHttpResponseException) caught when processing request to {s}->https://sw-center.st.com:443: The target server failed to respond
+2024-10-22 11:42:14,207 [INFO] RetryExec:113 - Retrying request to {s}->https://sw-center.st.com:443

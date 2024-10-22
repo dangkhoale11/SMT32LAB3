@@ -41,12 +41,12 @@ void getOneKeyInput(int buttonNo, GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin) {
 				subKeyProcess(buttonNo);
 				button_counter[buttonNo] = 200;
 			}
-		}
-		else{
+			} else {
 				button_counter[buttonNo]--;
 				if (button_counter[buttonNo] == 0){
-				keyReg3[buttonNo] = NORMAL_STATE;
-				S}
+					keyReg3[buttonNo] = NORMAL_STATE;
+				}
+			}
 		}
 	}
 }

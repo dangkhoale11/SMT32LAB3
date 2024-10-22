@@ -25,7 +25,7 @@ void initButton() {
 		keyReg2[buttonNo] = NORMAL_STATE;
 		keyReg3[buttonNo] = NORMAL_STATE; // store the old value
 		button_flag[buttonNo] = 0;
-		//button_counter[buttonNo] = 200; // 2 seconds
+		button_counter[buttonNo] = 200; // 2 seconds
 	}
 }
 
@@ -40,13 +40,10 @@ void getOneKeyInput(int buttonNo, GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin) {
 				//TODO
 				subKeyProcess(buttonNo);
 				button_counter[buttonNo] = 200;
-			}
-		}
-		else{
+			} else {
 				button_counter[buttonNo]--;
-				if (button_counter[buttonNo] == 0){
-				keyReg3[buttonNo] = NORMAL_STATE;
-				S}
+				if (button_counter[buttonNo] == 0) keyReg3[buttonNo] = NORMAL_STATE;
+			}
 		}
 	}
 }
