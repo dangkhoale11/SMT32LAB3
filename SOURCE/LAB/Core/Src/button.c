@@ -46,13 +46,13 @@ void getOneKeyInput(int buttonNo, GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin) {
 				button_counter[buttonNo]--;
 				if (button_counter[buttonNo] == 0){
 				keyReg3[buttonNo] = NORMAL_STATE;
-				S}
+				}
 		}
 	}
 }
 
 void getKeyInput() {
-	getOneKeyInput(1, Button1_GPIO_Port, Button1_Pin);
+	getOneKeyInput(1, BUT1_GPIO_Port, BUT1_Pin);
 	//getOneKeyInput(2, Button2_GPIO_Port, Button2_Pin);
 	//getOneKeyInput(3, Button3_GPIO_Port, Button3_Pin);
 }

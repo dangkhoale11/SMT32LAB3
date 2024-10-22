@@ -1,0 +1,9 @@
+/*
+ * global.c
+ *
+ *  Created on: Oct 22, 2024
+ *      Author: ADMIN
+ */
+#include "global.h"
+int status = 0;
+

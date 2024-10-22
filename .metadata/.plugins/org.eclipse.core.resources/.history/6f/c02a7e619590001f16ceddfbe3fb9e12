@@ -1,0 +1,25 @@
+/*
+ * global.h
+ *
+ *  Created on: Oct 22, 2024
+ *      Author: ADMIN
+ */
+
+#ifndef INC_GLOBAL_H_
+#define INC_GLOBAL_H_
+
+#include "main.h"
+#include "software_timer.h"
+#include "button.h"
+#include "display_7seg.h"
+extern int status;
+
+#define INIT		0
+#define AUTO_RED 	1
+#define AUTO_GREEN  2
+#define AUTO_YELLOW 3
+
+#define MODE_1 		11
+#define MODE_2 		12
+#define MODE_3 		13
+#endif /* INC_GLOBAL_H_ */

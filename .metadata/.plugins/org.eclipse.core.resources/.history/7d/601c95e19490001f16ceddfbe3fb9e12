@@ -1,0 +1,21 @@
+/*
+ * display_7seg.h
+ *
+ *  Created on: Oct 22, 2024
+ *      Author: ADMIN
+ */
+
+#ifndef INC_DISPLAY_7SEG_H_
+#define INC_DISPLAY_7SEG_H_
+
+#include "main.h"
+
+
+GPIO_PinState LEDS_state[10][7] = { { 0, 0, 0, 0, 0, 0, 1 }, { 1, 0, 0, 1,
+  			1, 1, 1 }, { 0, 0, 1, 0, 0, 1, 0 }, { 0, 0, 0, 0, 1, 1, 0 }, { 1, 0,
+  			0, 1, 1, 0, 0 }, { 0, 1, 0, 0, 1, 0, 0 }, { 0, 1, 0, 0, 0, 0, 0 }, {
+  			0, 0, 0, 1, 1, 1, 1 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 1, 0,
+  			0 } };
+
+
+#endif /* INC_DISPLAY_7SEG_H_ */
