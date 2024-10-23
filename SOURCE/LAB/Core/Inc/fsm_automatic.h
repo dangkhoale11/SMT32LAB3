@@ -11,6 +11,6 @@
 #include"global.h"
 #include "display_7seg.h"
 
-void fsm_automatic_run();
+void fsm_automatic_run(int i);
 
 #endif /* INC_FSM_AUTOMATIC_H_ */

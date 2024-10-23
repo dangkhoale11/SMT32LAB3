@@ -62,3 +62,4 @@ void display7SEG(int number) {
   			break;
   		}
  }
+
