@@ -19,7 +19,7 @@ extern int status_traffic;
 extern int timerRed;
 extern int timerGreen;
 extern int timerYellow;
-
+extern int timerTraffic;
 
 #define INIT		0
 #define AUTO_RED 	4
@@ -29,12 +29,17 @@ extern int timerYellow;
 #define MODE_1 		11
 #define MODE_2 		12
 #define MODE_3 		13
+#define MODE_4		14
 
 #define ODD 		1
 #define EVEN		2
+#define INIT_traffic  100
+
 
 void red_light(int i);
 void green_light(int i);
 void yellow_light(int i);
+
+void setTimer_traffic();
 
 #endif /* INC_GLOBAL_H_ */

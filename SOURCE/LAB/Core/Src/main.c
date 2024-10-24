@@ -100,9 +100,7 @@ int main(void)
   initButton();
   while (1)
   {
-	  //traffic_run();
-	  //fsm_automatic_run(ODD);
-	  fsm_automatic_run(EVEN);
+	  traffic_run();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -206,8 +204,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, red1_Pin|green1_Pin|yellow1_Pin|red2_Pin
-                          |green2_Pin|yellow2_Pin|red3_Pin|green3_Pin
-                          |yellow3_Pin|red4_Pin|green4_Pin|yellow4_Pin, GPIO_PIN_RESET);
+                          |green2_Pin|yellow2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SEG0_Pin|SEG1_Pin|SEG2_Pin|EN1_Pin
@@ -221,11 +218,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : red1_Pin green1_Pin yellow1_Pin red2_Pin
-                           green2_Pin yellow2_Pin red3_Pin green3_Pin
-                           yellow3_Pin red4_Pin green4_Pin yellow4_Pin */
+                           green2_Pin yellow2_Pin */
   GPIO_InitStruct.Pin = red1_Pin|green1_Pin|yellow1_Pin|red2_Pin
-                          |green2_Pin|yellow2_Pin|red3_Pin|green3_Pin
-                          |yellow3_Pin|red4_Pin|green4_Pin|yellow4_Pin;
+                          |green2_Pin|yellow2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

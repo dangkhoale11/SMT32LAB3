@@ -1,0 +1,26 @@
+/*
+ * traffic_light.c
+ *
+ *  Created on: Oct 23, 2024
+ *      Author: ADMIN
+ */
+
+#include "traffic_light.h"
+
+void traffic_run(){
+	switch (status_traffic){
+		case INIT_traffic:
+			status_traffic = ODD;
+			break;
+		case ODD:
+			fsm_automatic_run(ODD);
+			status_traffic = EVEN;
+			break;
+		case EVEN:
+			fsm_automatic_run(EVEN);
+			status_traffic = INIT_traffic;
+			break;
+		default:
+			break;
+	}
+}
