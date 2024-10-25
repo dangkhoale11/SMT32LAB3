@@ -9,7 +9,7 @@ int status[5] = {0, 0, 0, 0, 0};
 
 int status_traffic = INIT_traffic;
 
-int timerRed = 600;
+int timerRed = 500;
 int  timerGreen = 300;
 int timerYellow = 200;
 
@@ -79,3 +79,42 @@ void yellow_light(int i){
 	HAL_GPIO_WritePin(green2_GPIO_Port, green2_Pin, RESET);
 
 }
+
+
+void red_blinky(){
+	HAL_GPIO_TogglePin(red1_GPIO_Port, red1_Pin);
+	HAL_GPIO_TogglePin(red2_GPIO_Port, red2_Pin);
+	HAL_GPIO_WritePin(green1_GPIO_Port, green1_Pin, RESET);
+	HAL_GPIO_WritePin(green2_GPIO_Port, green2_Pin, RESET);
+	HAL_GPIO_WritePin(yellow1_GPIO_Port, yellow1_Pin, RESET);
+	HAL_GPIO_WritePin(yellow2_GPIO_Port, yellow2_Pin, RESET);
+}
+
+void green_blinky(){
+	HAL_GPIO_TogglePin(green1_GPIO_Port, green1_Pin);
+	HAL_GPIO_TogglePin(green2_GPIO_Port, green2_Pin);
+	HAL_GPIO_WritePin(red1_GPIO_Port, red1_Pin, RESET);
+	HAL_GPIO_WritePin(red2_GPIO_Port, red2_Pin, RESET);
+	HAL_GPIO_WritePin(yellow1_GPIO_Port, yellow1_Pin, RESET);
+	HAL_GPIO_WritePin(yellow2_GPIO_Port, yellow2_Pin, RESET);
+}
+
+void yellow_blinky(){
+	HAL_GPIO_TogglePin(yellow1_GPIO_Port, yellow1_Pin);
+	HAL_GPIO_TogglePin(yellow2_GPIO_Port, yellow2_Pin);
+	HAL_GPIO_WritePin(red1_GPIO_Port, red1_Pin, RESET);
+	HAL_GPIO_WritePin(red2_GPIO_Port, red2_Pin, RESET);
+	HAL_GPIO_WritePin(green1_GPIO_Port, green1_Pin, RESET);
+	HAL_GPIO_WritePin(green2_GPIO_Port, green2_Pin, RESET);
+}
+
+
+void reset_light(){
+	HAL_GPIO_WritePin(red1_GPIO_Port, red1_Pin, RESET);
+	HAL_GPIO_WritePin(red2_GPIO_Port, red2_Pin, RESET);
+	HAL_GPIO_WritePin(green1_GPIO_Port, green1_Pin, RESET);
+	HAL_GPIO_WritePin(green2_GPIO_Port, green2_Pin, RESET);
+	HAL_GPIO_WritePin(yellow1_GPIO_Port, yellow1_Pin, RESET);
+	HAL_GPIO_WritePin(yellow2_GPIO_Port, yellow2_Pin, RESET);
+}
+

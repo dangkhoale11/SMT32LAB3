@@ -30,7 +30,8 @@ void fsm_automatic_run(int i){
 	case AUTO_YELLOW:
 		yellow_light(i);
 		if(timer_flag[i] == 1){
-			status[i] = INIT;
+			status[i] = AUTO_RED;
+			setTimer(i, timerRed);
 		}
 		break;
 	default:

@@ -26,7 +26,7 @@ extern int timerTraffic;
 #define AUTO_GREEN  5
 #define AUTO_YELLOW 3
 
-#define MODE_1 		11
+#define MODE_1 		0
 #define MODE_2 		12
 #define MODE_3 		13
 #define MODE_4		14
@@ -35,10 +35,14 @@ extern int timerTraffic;
 #define EVEN		2
 #define INIT_traffic  100
 
-
+void reset_light();
 void red_light(int i);
 void green_light(int i);
 void yellow_light(int i);
+
+void red_blinky();
+void green_blinky();
+void yellow_blinky();
 
 void setTimer_traffic();
 

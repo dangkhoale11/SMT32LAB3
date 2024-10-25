@@ -10,11 +10,14 @@
 
 #include "main.h"
 
-extern GPIO_TypeDef *SEG_PORTS[7];
-extern uint16_t SEG_PINS[7];
+extern GPIO_TypeDef *SEG_PORTS[14];
+extern uint16_t SEG_PINS[14];
 extern GPIO_PinState LEDS_state[10][7];
 
 void set_LEDS(GPIO_PinState *L_LEDS_state);
 
+void set_LEDS_2(GPIO_PinState *L_LEDS_state);
+
+void display7SEG_2(int number);
 void display7SEG(int number);
 #endif /* INC_DISPLAY_7SEG_H_ */

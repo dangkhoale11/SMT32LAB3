@@ -26,6 +26,7 @@
 #include "button.h"
 #include "traffic_light.h"
 #include "fsm_automatic.h"
+#include "traffic_light_manual.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -101,6 +102,7 @@ int main(void)
   while (1)
   {
 	  traffic_run();
+	  traffic_light_manual_run();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -204,7 +206,9 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, red1_Pin|green1_Pin|yellow1_Pin|red2_Pin
-                          |green2_Pin|yellow2_Pin, GPIO_PIN_RESET);
+                          |green2_Pin|yellow2_Pin|SEG7_Pin|SEG8_Pin
+                          |SEG9_Pin|SEG10_Pin|SEG11_Pin|SEG12_Pin
+                          |SEG13_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SEG0_Pin|SEG1_Pin|SEG2_Pin|EN1_Pin
@@ -218,9 +222,13 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : red1_Pin green1_Pin yellow1_Pin red2_Pin
-                           green2_Pin yellow2_Pin */
+                           green2_Pin yellow2_Pin SEG7_Pin SEG8_Pin
+                           SEG9_Pin SEG10_Pin SEG11_Pin SEG12_Pin
+                           SEG13_Pin */
   GPIO_InitStruct.Pin = red1_Pin|green1_Pin|yellow1_Pin|red2_Pin
-                          |green2_Pin|yellow2_Pin;
+                          |green2_Pin|yellow2_Pin|SEG7_Pin|SEG8_Pin
+                          |SEG9_Pin|SEG10_Pin|SEG11_Pin|SEG12_Pin
+                          |SEG13_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

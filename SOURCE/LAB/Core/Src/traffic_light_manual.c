@@ -1,0 +1,101 @@
+/*
+ * traffic_light_manual.c
+ *
+ *  Created on: Oct 25, 2024
+ *      Author: ADMIN
+ */
+
+#include "traffic_light_manual.h"
+
+
+void traffic_light_manual_run(){
+
+	switch (status_traffic){
+		case MODE_2:
+			if(timerRed == 9900) timerRed = 500;
+			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
+			HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, RESET);
+			display7SEG(timerRed/1000);
+			display7SEG_2((timerRed % 1000)/100);
+			if(timer_flag[4] == 1){
+				red_blinky();
+				setTimer(4,50);
+			}
+			if(isButtonPressed(1) == 1){
+				status_traffic = MODE_3;
+				reset_light();
+				setTimer(4,50);
+			}
+			if(isButtonPressed(2) == 1){
+				timerRed += 100;
+			}
+			if(isButtonPressed(3) == 1){
+				reset_light();
+				status_traffic = INIT_traffic;
+			}
+			break;
+		case MODE_3:
+
+			if(timerGreen == 9900) timerGreen = 300;
+			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
+			HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, RESET);
+			display7SEG(timerGreen/1000);
+			display7SEG_2((timerGreen % 1000) / 100);
+
+
+			if(timer_flag[4] == 1){
+				green_blinky();
+				setTimer(4,50);
+			}
+			if(isButtonPressed(1) == 1){
+				reset_light();
+				status_traffic = MODE_4;
+
+				setTimer(4,50);
+			}
+			if(isButtonPressed(2) == 1){
+				timerGreen += 100;
+			}
+			if(isButtonPressed(3) == 1){
+				reset_light();
+				status_traffic = INIT_traffic;
+			}
+			break;
+		case MODE_4:
+			if(timerYellow == 9900) timerYellow = 200;
+			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
+			HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, RESET);
+			display7SEG(timerYellow/1000);
+			display7SEG_2((timerYellow % 1000) / 100);
+
+			if(timer_flag[4] == 1){
+				yellow_blinky();
+				setTimer(4,50);
+			}
+			if(isButtonPressed(1) == 1){
+				status_traffic = INIT_traffic;
+				reset_light();
+			}
+			if(isButtonPressed(2) == 1){
+				timerYellow += 100;
+			}
+			if(isButtonPressed(3) == 1){
+				reset_light();
+				status_traffic = INIT_traffic;
+			}
+			break;
+		default:
+			if(isButtonPressed(1) == 1){
+				status_traffic = MODE_2;
+				reset_light();
+				setTimer(4,50);
+			}
+			break;
+	}
+}

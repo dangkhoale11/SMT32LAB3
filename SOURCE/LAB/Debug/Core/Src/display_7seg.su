@@ -1,2 +1,4 @@
-display_7seg.c:24:6:set_LEDS	24	static
-display_7seg.c:29:6:display7SEG	16	static
+display_7seg.c:26:6:set_LEDS	24	static
+display_7seg.c:31:6:display7SEG	16	static
+display_7seg.c:68:6:set_LEDS_2	24	static
+display_7seg.c:74:6:display7SEG_2	16	static

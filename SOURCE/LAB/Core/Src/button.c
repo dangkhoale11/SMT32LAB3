@@ -53,8 +53,8 @@ void getOneKeyInput(int buttonNo, GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin) {
 
 void getKeyInput() {
 	getOneKeyInput(1, BUT1_GPIO_Port, BUT1_Pin);
-	//getOneKeyInput(2, Button2_GPIO_Port, Button2_Pin);
-	//getOneKeyInput(3, Button3_GPIO_Port, Button3_Pin);
+	getOneKeyInput(2, BUT2_GPIO_Port, BUT2_Pin);
+	getOneKeyInput(3, BUT3_GPIO_Port, BUT3_Pin);
 }
 
 int isButtonPressed(int buttonNo) {

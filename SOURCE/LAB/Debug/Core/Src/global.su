@@ -2,3 +2,7 @@ global.c:18:6:setTimer_traffic	4	static
 global.c:22:6:red_light	16	static
 global.c:43:6:green_light	16	static
 global.c:63:6:yellow_light	16	static
+global.c:84:6:red_blinky	8	static
+global.c:93:6:green_blinky	8	static
+global.c:102:6:yellow_blinky	8	static
+global.c:112:6:reset_light	8	static

@@ -11,10 +11,14 @@ void display_seg(int i){
 	if(i == ODD){
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
+		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, SET);
 	}
 	else if(i == EVEN){
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
+		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, SET);
 	}
 	if(timerTraffic > timerGreen/100 + timerYellow/100) display7SEG(timerTraffic - timerGreen/100 - timerYellow/100);
 	else if(timerTraffic > timerYellow/100) display7SEG(timerTraffic - timerYellow/100);
@@ -28,6 +32,8 @@ void traffic_run(){
 			status_traffic = ODD;
 			setTimer_traffic();
 			setTimer(0, 100);
+			status[ODD] = INIT;
+			status[EVEN] = INIT;
 			break;
 		case ODD:
 			display_seg(ODD);
@@ -38,7 +44,7 @@ void traffic_run(){
 			}
 			if(timerTraffic == 0){
 				status_traffic = EVEN;
-				setTimer(0,100);
+				//setTimer(0,100);
 				setTimer_traffic();
 			}
 			break;
@@ -50,7 +56,8 @@ void traffic_run(){
 				setTimer(0,100);
 			}
 			if(timerTraffic == 0){
-				status_traffic = INIT_traffic;
+				status_traffic = ODD;
+				//setTimer(0,100);
 				setTimer_traffic();
 			}
 			break;
