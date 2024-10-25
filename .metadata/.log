@@ -1209,3 +1209,6 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-10-25 12:07:45.724
 !MESSAGE Log4j initialized with config file C:\Users\ADMIN\Desktop\GIT_LAB3\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-10-25 12:07:56.177
+!MESSAGE Started RMI Server, listening on port 41337
