@@ -12,7 +12,6 @@ int status_traffic = INIT_traffic;
 int timerRed = 500;
 int  timerGreen = 300;
 int timerYellow = 200;
-int tmp = 0;
 
 int timerTraffic = 0;
 

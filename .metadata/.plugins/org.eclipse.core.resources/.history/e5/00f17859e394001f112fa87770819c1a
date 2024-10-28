@@ -31,7 +31,6 @@ void traffic_light_manual_run(){
 			}
 			if(isButtonPressed(1) == 1){
 				status_traffic = MODE_3;
-				tmp = 0;
 				reset_light();
 				setTimer(4,50);
 			}
@@ -64,7 +63,6 @@ void traffic_light_manual_run(){
 			if(isButtonPressed(1) == 1){
 				reset_light();
 				status_traffic = MODE_4;
-				tmp = 0;
 
 				setTimer(4,50);
 			}
@@ -97,7 +95,6 @@ void traffic_light_manual_run(){
 			if(isButtonPressed(1) == 1){
 				status_traffic = INIT_traffic;
 				reset_light();
-				tmp = 0;
 			}
 			if(isButtonPressed(2) == 1){
 				tmp += 100;
@@ -112,7 +109,6 @@ void traffic_light_manual_run(){
 		default:
 			if(isButtonPressed(1) == 1){
 				status_traffic = MODE_2;
-				tmp = 0;
 				reset_light();
 				setTimer(4,50);
 			}

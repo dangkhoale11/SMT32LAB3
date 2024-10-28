@@ -20,7 +20,6 @@ extern int timerRed;
 extern int timerGreen;
 extern int timerYellow;
 extern int timerTraffic;
-extern int tmp;
 
 #define INIT		0
 #define AUTO_RED 	4
