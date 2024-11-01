@@ -12,6 +12,9 @@ int status_traffic = INIT_traffic;
 int timerRed = 500;
 int  timerGreen = 300;
 int timerYellow = 200;
+int countRed = 0;
+int countGreen = 0;
+int countYellow = 0;
 
 int timerTraffic = 0;
 
@@ -118,3 +121,45 @@ void reset_light(){
 	HAL_GPIO_WritePin(yellow2_GPIO_Port, yellow2_Pin, RESET);
 }
 
+
+
+void onRed1(){
+	HAL_GPIO_WritePin(red1_GPIO_Port, red1_Pin, SET);
+	HAL_GPIO_WritePin(green1_GPIO_Port, green1_Pin, RESET);
+	HAL_GPIO_WritePin(yellow1_GPIO_Port, yellow1_Pin, RESET);
+}
+
+
+void onRed2(){
+	HAL_GPIO_WritePin(red2_GPIO_Port, red2_Pin, SET);
+	HAL_GPIO_WritePin(green2_GPIO_Port, green2_Pin, RESET);
+	HAL_GPIO_WritePin(yellow2_GPIO_Port, yellow2_Pin, RESET);
+}
+
+
+
+void onGreen1(){
+	HAL_GPIO_WritePin(red1_GPIO_Port, red1_Pin, RESET);
+	HAL_GPIO_WritePin(green1_GPIO_Port, green1_Pin, SET);
+	HAL_GPIO_WritePin(yellow1_GPIO_Port, yellow1_Pin, RESET);
+}
+
+
+void onGreen2(){
+	HAL_GPIO_WritePin(red2_GPIO_Port, red2_Pin, RESET);
+	HAL_GPIO_WritePin(green2_GPIO_Port, green2_Pin, SET);
+	HAL_GPIO_WritePin(yellow2_GPIO_Port, yellow2_Pin, RESET);
+}
+
+
+void onYellow1(){
+	HAL_GPIO_WritePin(red1_GPIO_Port, red1_Pin, RESET);
+	HAL_GPIO_WritePin(green1_GPIO_Port, green1_Pin, RESET);
+	HAL_GPIO_WritePin(yellow1_GPIO_Port, yellow1_Pin, SET);
+}
+
+void onYellow2(){
+	HAL_GPIO_WritePin(red2_GPIO_Port, red2_Pin, RESET);
+	HAL_GPIO_WritePin(green2_GPIO_Port, green2_Pin, RESET);
+	HAL_GPIO_WritePin(yellow2_GPIO_Port, yellow2_Pin, SET);
+}

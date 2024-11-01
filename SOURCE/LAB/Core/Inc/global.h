@@ -20,6 +20,9 @@ extern int timerRed;
 extern int timerGreen;
 extern int timerYellow;
 extern int timerTraffic;
+extern int countRed;
+extern int countGreen;
+extern int countYellow;
 
 #define INIT		0
 #define AUTO_RED 	4
@@ -45,5 +48,12 @@ void green_blinky();
 void yellow_blinky();
 
 void setTimer_traffic();
+
+void onRed1();
+void onRed2();
+void onGreen1();
+void onGreen2();
+void onYellow1();
+void onYellow2();
 
 #endif /* INC_GLOBAL_H_ */

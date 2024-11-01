@@ -8,23 +8,23 @@
 #include "traffic_light.h"
 
 void display_seg(int i){
-	if(i == ODD){
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
-		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+		//HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
 		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
 		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, SET);
-	}
-	else if(i == EVEN){
-		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
-		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
-		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
-		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, SET);
-	}
-	if(timerTraffic > timerGreen/100 + timerYellow/100) display7SEG(timerTraffic - timerGreen/100 - timerYellow/100);
-	else if(timerTraffic > timerYellow/100) display7SEG(timerTraffic - timerYellow/100);
-	else if (timerTraffic > 0) display7SEG(timerTraffic);
+
+		display7SEG(i);
+
 }
 
+
+void display_seg2(int i){
+	//HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+	HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
+	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
+	HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, SET);
+	display7SEG_2(i);
+}
 
 void traffic_run(){
 	switch (status_traffic){
@@ -32,32 +32,39 @@ void traffic_run(){
 			status_traffic = ODD;
 			setTimer_traffic();
 			setTimer(0, 100);
-			status[ODD] = INIT;
-			status[EVEN] = INIT;
+			//status[ODD] = INIT;
+			//status[EVEN] = INIT;
 			break;
 		case ODD:
-			display_seg(ODD);
-			fsm_automatic_run(ODD);
+			if(timerTraffic > timerGreen/100 + timerYellow/100) display_seg(timerTraffic - timerGreen/100 - timerYellow/100);
+			else if(timerTraffic > timerYellow/100) display_seg(timerTraffic - timerYellow/100);
+			else if (timerTraffic > 0) display_seg(timerTraffic);
+
+			if(countGreen > 0) display_seg2(countGreen);
+			if(countRed > 0) display_seg2(countRed);
+			if(countYellow > 0) display_seg2(countYellow);
+
+			fsm_automatic_run();
 			if(timer_flag[0] == 1){
 				timerTraffic--;
 				setTimer(0,100);
 			}
 			if(timerTraffic == 0){
 				status_traffic = EVEN;
-				//setTimer(0,100);
+				setTimer(0,100);
 				setTimer_traffic();
 			}
 			break;
 		case EVEN:
-			display_seg(EVEN);
-			fsm_automatic_run(EVEN);
+			//display_seg(EVEN);
+			fsm_automatic_run2();
 			if(timer_flag[0] == 1){
 				timerTraffic--;
 				setTimer(0,100);
 			}
 			if(timerTraffic == 0){
 				status_traffic = ODD;
-				//setTimer(0,100);
+				setTimer(0,100);
 				setTimer_traffic();
 			}
 			break;

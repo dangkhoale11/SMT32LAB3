@@ -1,0 +1,67 @@
+/*
+ * fsm_automatic.c
+ *
+ *  Created on: Oct 22, 2024
+ *      Author: ADMIN
+ */
+
+#include "fsm_automatic.h"
+
+void fsm_automatic_run(int i){
+	switch (status[i]){
+	case INIT:
+		status[i] = AUTO_RED;
+		setTimer(i, timerRed);
+		setTimer(3, 100);
+		break;
+	case AUTO_RED:
+		if(timer_flag[3] == 1){
+			countRed++;
+		}
+		if(i == ODD){
+			onRed1();
+			if(countRed < timerGreen/100) onGreen2();
+			else onYellow2();
+		}
+		else{
+			onRed2();
+			if(countRed < timerGreen/100) onGreen1();
+			else onYellow1();
+		}
+
+		if(timer_flag[i] == 1){
+			status[i] = AUTO_GREEN;
+			setTimer(i, timerGreen);
+			countRed = 0;
+			setTimer(3, 100);
+		}
+		break;
+	case AUTO_GREEN:
+		if(timer_flag[3] == 1){
+			countRed++;
+		}
+		if(i == ODD){
+			onGreen1();
+			onRed2();
+		}
+		else{
+			onGreen2();
+			onRed1();
+		}
+		if(timer_flag[i] == 1){
+			status[i] = AUTO_YELLOW;
+			setTimer(i, timerYellow);
+		}
+		break;
+	case AUTO_YELLOW:
+		yellow_light(i);
+		if(timer_flag[i] == 1){
+			status[i] = AUTO_RED;
+			setTimer(i, timerRed);
+		}
+		break;
+	default:
+		break;
+	}
+
+}

@@ -13,4 +13,5 @@
 void traffic_run();
 
 void display_seg(int i);
+void display_seg2(int i);
 #endif /* INC_TRAFFIC_LIGHT_H_ */

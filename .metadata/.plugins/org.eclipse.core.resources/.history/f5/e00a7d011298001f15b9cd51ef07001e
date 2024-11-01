@@ -1,0 +1,110 @@
+/*
+ * fsm_automatic.c
+ *
+ *  Created on: Oct 22, 2024
+ *      Author: ADMIN
+ */
+
+#include "fsm_automatic.h"
+
+void fsm_automatic_run(){
+	switch (status[ODD]){
+	case INIT:
+		status[ODD] = AUTO_RED;
+		countGreen = timerGreen/100;
+		countRed = 0;
+		countYellow = 0;
+		setTimer(ODD, timerRed);
+		setTimer(3, 100);
+		break;
+	case AUTO_RED:
+		if(timer_flag[3] == 1){
+			countGreen--;
+			setTimer(3, 100);
+		}
+			onRed1();
+			if(countGreen > 0) onGreen2();
+			else onYellow2();
+
+		if(timer_flag[ODD] == 1){
+			status[ODD] = AUTO_GREEN;
+			setTimer(ODD, timerGreen);
+			countRed = timerRed/100;
+			setTimer(3, 100);
+		}
+		break;
+	case AUTO_GREEN:
+		if(timer_flag[3] == 1){
+			countRed--;
+			setTimer(3, 100);
+		}
+
+			onGreen1();
+			onRed2();
+
+		if(timer_flag[ODD] == 1){
+			status[ODD] = AUTO_YELLOW;
+			setTimer(ODD, timerYellow);
+			setTimer(3, 100);
+		}
+		break;
+	case AUTO_YELLOW:
+		if(timer_flag[3] == 1){
+			countRed--;
+			setTimer(3, 100);
+		}
+
+			onYellow1();
+			onRed2();
+
+		if(timer_flag[ODD] == 1){
+			status[ODD] = INIT;
+		}
+		break;
+	default:
+		break;
+	}
+
+}
+
+
+
+void fsm_automatic_run2(){
+	switch (status[EVEN]){
+		case INIT:
+			status[EVEN] = AUTO_GREEN;
+			setTimer(EVEN, timerGreen);
+			break;
+		case AUTO_RED:
+			onRed2();
+			if(timer_flag[3] == 1){
+				countRed++;
+			}
+			if(countRed < timerGreen/100) onGreen1();
+			else onYellow1();
+			if(timer_flag[EVEN] == 1){
+				status[EVEN] = INIT;
+			}
+			break;
+		case AUTO_GREEN:
+			onGreen2();
+			onRed1();
+			if(timer_flag[EVEN] == 1){
+				status[EVEN] = AUTO_YELLOW;
+				setTimer(EVEN, timerYellow);
+			}
+			break;
+		case AUTO_YELLOW:
+			onYellow2();
+			onRed1();
+			if(timer_flag[EVEN] == 1){
+				status[EVEN] = AUTO_RED;
+				setTimer(EVEN, timerRed);
+			}
+			countRed = 0;
+			setTimer(3, 100);
+			break;
+		default:
+			break;
+	}
+}
