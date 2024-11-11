@@ -32,8 +32,8 @@ void traffic_run(){
 			status_traffic = ODD;
 			setTimer_traffic();
 			setTimer(0, 100);
-			//status[ODD] = INIT;
-			//status[EVEN] = INIT;
+			status[ODD] = INIT;
+			status[EVEN] = INIT;
 			break;
 		case ODD:
 			if(timerTraffic > timerGreen/100 + timerYellow/100) display_seg(timerTraffic - timerGreen/100 - timerYellow/100);
@@ -57,15 +57,23 @@ void traffic_run(){
 			break;
 		case EVEN:
 			//display_seg(EVEN);
+			if(timerTraffic > timerGreen/100 + timerYellow/100) display_seg(timerTraffic - timerGreen/100 - timerYellow/100);
+			else if(timerTraffic > timerYellow/100) display_seg(timerTraffic - timerYellow/100);
+			else if (timerTraffic > 0) display_seg(timerTraffic);
+
+			if(countGreen2 > 0) display_seg2(countGreen2);
+			if(countRed2 > 0) display_seg2(countRed2);
+			if(countYellow2 > 0) display_seg2(countYellow2);
+
 			fsm_automatic_run2();
 			if(timer_flag[0] == 1){
 				timerTraffic--;
 				setTimer(0,100);
 			}
 			if(timerTraffic == 0){
-				status_traffic = ODD;
-				setTimer(0,100);
-				setTimer_traffic();
+				status_traffic = INIT_traffic;
+				//setTimer(0,100);
+				//setTimer_traffic();
 			}
 			break;
 		default:

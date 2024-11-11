@@ -24,6 +24,12 @@ extern int countRed;
 extern int countGreen;
 extern int countYellow;
 
+extern int tmp;
+
+extern int countRed2;
+extern int countGreen2;
+extern int countYellow2;
+
 #define INIT		0
 #define AUTO_RED 	4
 #define AUTO_GREEN  5
@@ -39,9 +45,6 @@ extern int countYellow;
 #define INIT_traffic  100
 
 void reset_light();
-void red_light(int i);
-void green_light(int i);
-void yellow_light(int i);
 
 void red_blinky();
 void green_blinky();
