@@ -24,7 +24,6 @@
 /* USER CODE BEGIN Includes */
 #include "software_timer.h"
 #include "button.h"
-#include "traffic_light.h"
 #include "fsm_automatic.h"
 #include "traffic_light_manual.h"
 /* USER CODE END Includes */
@@ -101,9 +100,8 @@ int main(void)
   initButton();
   while (1)
   {
-	  //fsm_automatic_run();
-	  traffic_run();
-	  //traffic_light_manual_run();
+	  fsm_automatic_run();
+	  traffic_light_manual_run();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

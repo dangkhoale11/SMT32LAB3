@@ -9,12 +9,9 @@
 
 
 void traffic_light_manual_run(){
-
-	switch (status_traffic){
+	switch (status[ODD]){
 		case MODE_2:
-
 			if(tmp == 0) tmp = timerRed;
-
 			if(tmp == 9900) tmp = 500;
 			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
 			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
@@ -23,11 +20,12 @@ void traffic_light_manual_run(){
 			display7SEG(tmp/1000);
 			display7SEG_2((tmp % 1000)/100);
 			if(timer_flag[4] == 1){
+
 				red_blinky();
 				setTimer(4,50);
 			}
 			if(isButtonPressed(1) == 1){
-				status_traffic = MODE_3;
+				status[ODD] = MODE_3;
 				tmp = 0;
 				reset_light();
 				setTimer(4,50);
@@ -39,7 +37,7 @@ void traffic_light_manual_run(){
 				reset_light();
 				timerRed = tmp;
 				tmp = 0;
-				status_traffic = INIT_traffic;
+				status[ODD] = INIT;
 			}
 			break;
 		case MODE_3:
@@ -62,7 +60,7 @@ void traffic_light_manual_run(){
 			if(isButtonPressed(1) == 1){
 				reset_light();
 				tmp = 0;
-				status_traffic = MODE_4;
+				status[ODD] = MODE_4;
 
 				setTimer(4,50);
 			}
@@ -73,18 +71,17 @@ void traffic_light_manual_run(){
 				reset_light();
 				timerGreen = tmp;
 				tmp = 0;
-				status_traffic = INIT_traffic;
+				status[ODD] = INIT;
 			}
 			break;
 		case MODE_4:
-
 			if(tmp == 0) tmp = timerYellow;
-
 			if(tmp == 9900) tmp = 200;
 			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
 			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
 			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
 			HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, RESET);
+
 			display7SEG(tmp/1000);
 			display7SEG_2((tmp % 1000) / 100);
 
@@ -93,7 +90,7 @@ void traffic_light_manual_run(){
 				setTimer(4,50);
 			}
 			if(isButtonPressed(1) == 1){
-				status_traffic = INIT_traffic;
+				status[ODD] = INIT;
 				tmp = 0;
 				reset_light();
 			}
@@ -104,16 +101,10 @@ void traffic_light_manual_run(){
 				reset_light();
 				timerYellow = tmp;
 				tmp = 0;
-				status_traffic = INIT_traffic;
+				status[ODD] = INIT;
 			}
 			break;
 		default:
-			if(isButtonPressed(1) == 1){
-				status_traffic = MODE_2;
-				tmp = 0;
-				reset_light();
-				setTimer(4,50);
-			}
 			break;
 	}
 }

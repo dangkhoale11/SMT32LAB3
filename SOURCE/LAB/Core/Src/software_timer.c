@@ -8,9 +8,9 @@
 
 int counter[8];
 int timer_flag[8];
-int timer_cycle = 10;
+
 void setTimer(int i, int duration){
-	counter[i] = duration / timer_cycle;
+	counter[i] = duration;
 	timer_flag[i] = 0;
 }
 

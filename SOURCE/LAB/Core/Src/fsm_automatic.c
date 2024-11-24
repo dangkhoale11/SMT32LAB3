@@ -14,22 +14,20 @@ int check = 0;
 void fsm_automatic_run(){
 	switch (status[ODD]){
 	case INIT:
-
 		countGreen = timerGreen/100;
 		timerRed1 = timerRed/100;
 		countYellow = timerYellow/100;
 		check = 1;
+		setTimer(3, 100);
+		setTimer(5, 50);
 		status[ODD] = AUTO_RED;
-		setTimer(3, 1000);
-		setTimer(5, 500);
 		break;
 	case AUTO_RED:
 		if(timerRed1 > 0){
 			onRed1();
-			if(timerRed1 - countGreen == countYellow) onGreen2();
+			if(countGreen> 0) onGreen2();
 			else onYellow2();
 		}
-
 
 		if(check == 1){
 			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
@@ -54,7 +52,7 @@ void fsm_automatic_run(){
 			if(countGreen > 0) display7SEG_2(countGreen/10);
 			else  display7SEG_2(countYellow/10);
 
-			setTimer(5, 500);
+			setTimer(5, 50);
 		}
 		if(timer_flag[3] == 1){
 
@@ -71,16 +69,22 @@ void fsm_automatic_run(){
 			else  display7SEG(countYellow % 10);
 
 			if(countGreen <= 0) countYellow--;
-			setTimer(3, 1000);
+			setTimer(3, 100);
 		}
 		if(timerRed1 == 0){
 			countRed = timerRed/100;
 			timerGreen1 = timerGreen/100;
 			check = 1;
 			status[ODD] = AUTO_GREEN;
-			setTimer(5, 500);
-			setTimer(3, 1000);
+			setTimer(5, 50);
+			setTimer(3, 100);
 		}
+		if(isButtonPressed(1) == 1){
+			reset_light();
+			setTimer(4, 50);
+			status[ODD] = MODE_2;
+		}
+
 		break;
 
 
@@ -102,7 +106,7 @@ void fsm_automatic_run(){
 		}
 
 		if(timer_flag[5] == 1){
-			setTimer(5,500);
+			setTimer(5,50);
 
 			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
 			HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, SET);
@@ -114,7 +118,7 @@ void fsm_automatic_run(){
 		}
 
 		if(timer_flag[3] == 1){
-			setTimer(3, 1000);
+			setTimer(3, 100);
 
 			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
 			HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, RESET);
@@ -131,11 +135,16 @@ void fsm_automatic_run(){
 		}
 		if(timerGreen1  == 0){
 
-			setTimer(5, 500);
-			setTimer(3, 1000);
+			setTimer(5, 50);
+			setTimer(3, 100);
 			check = 1;
 			timerYellow1 = timerYellow/100;
 			status[ODD] = AUTO_YELLOW;
+		}
+		if(isButtonPressed(1) == 1){
+			reset_light();
+			setTimer(4, 50);
+			status[ODD] = MODE_2;
 		}
 		break;
 
@@ -162,7 +171,7 @@ void fsm_automatic_run(){
 
 			display7SEG(timerYellow1/10);
 			display7SEG_2(countRed/10);
-			setTimer(5,500);
+			setTimer(5,50);
 		}
 
 		if(timer_flag[3] == 1){
@@ -175,7 +184,12 @@ void fsm_automatic_run(){
 			timerYellow1--;
 			display7SEG_2(timerYellow1%10);
 			display7SEG(countRed%10);
-			setTimer(3, 1000);
+			setTimer(3, 100);
+		}
+		if(isButtonPressed(1) == 1){
+			reset_light();
+			setTimer(4, 50);
+			status[ODD] = MODE_2;
 		}
 		if(timerYellow1 == 0){
 			status[ODD] = INIT;

@@ -9,7 +9,6 @@
 "./Core/Src/syscalls.o"
 "./Core/Src/sysmem.o"
 "./Core/Src/system_stm32f1xx.o"
-"./Core/Src/traffic_light.o"
 "./Core/Src/traffic_light_manual.o"
 "./Core/Startup/startup_stm32f103c6ux.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o"
