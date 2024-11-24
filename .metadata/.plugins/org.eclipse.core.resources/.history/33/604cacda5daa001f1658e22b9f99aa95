@@ -175,6 +175,7 @@ void fsm_automatic_run(){
 			timerYellow1--;
 			display7SEG_2(timerYellow1%10);
 			display7SEG(countRed%10);
+
 			setTimer(3, 1000);
 		}
 		if(timerYellow1 == 0){

@@ -6,11 +6,11 @@
  */
 #include "software_timer.h"
 
-int counter[5];
-int timer_flag[5];
-
+int counter[8];
+int timer_flag[8];
+int timer_cycle = 10;
 void setTimer(int i, int duration){
-	counter[i] = duration;
+	counter[i] = duration / timer_cycle;
 	timer_flag[i] = 0;
 }
 
@@ -29,4 +29,7 @@ void timerRun(){
 	timer_run(2);
 	timer_run(3);
 	timer_run(4);
+	timer_run(5);
+	timer_run(6);
+	timer_run(7);
 }

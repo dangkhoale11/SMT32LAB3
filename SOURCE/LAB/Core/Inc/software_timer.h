@@ -9,7 +9,7 @@
 #define INC_SOFTWARE_TIMER_H_
 #include "main.h"
 
-extern int timer_flag[5];
+extern int timer_flag[8];
 void setTimer(int i, int duration);
 
 void timer_run(int i);

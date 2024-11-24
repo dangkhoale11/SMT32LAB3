@@ -15,7 +15,6 @@ int timerYellow = 200;
 
 int tmp = 0;
 
-
 int countRed = 0;
 int countGreen = 0;
 int countYellow = 0;

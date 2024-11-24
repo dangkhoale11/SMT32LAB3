@@ -13,6 +13,6 @@
 
 void fsm_automatic_run();
 
-void fsm_automatic_run2();
+
 
 #endif /* INC_FSM_AUTOMATIC_H_ */
