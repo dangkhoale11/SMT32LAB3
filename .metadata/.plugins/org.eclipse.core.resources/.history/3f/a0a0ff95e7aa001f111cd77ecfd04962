@@ -82,7 +82,6 @@ void fsm_automatic_run(){
 		if(isButtonPressed(1) == 1){
 			reset_light();
 			setTimer(4, 50);
-			setTimer(6, 100);
 			status[ODD] = MODE_2;
 		}
 
@@ -145,7 +144,6 @@ void fsm_automatic_run(){
 		if(isButtonPressed(1) == 1){
 			reset_light();
 			setTimer(4, 50);
-			setTimer(6, 100);
 			status[ODD] = MODE_2;
 		}
 		break;
@@ -191,7 +189,6 @@ void fsm_automatic_run(){
 		if(isButtonPressed(1) == 1){
 			reset_light();
 			setTimer(4, 50);
-			setTimer(6, 100);
 			status[ODD] = MODE_2;
 		}
 		if(timerYellow1 == 0){
