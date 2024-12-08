@@ -106,16 +106,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   initButton();
   SCH_Init();
-  status[ODD] = INIT;
-  SCH_Add_Task(timerRun, 1, 10);
-  SCH_Add_Task(getKeyInput, 1, 10);
-  SCH_Add_Task(fsm_automatic_run, 1, 100);
-  SCH_Add_Task(traffic_light_manual_run, 1, 100);
+  SCH_Add_Task(fsm_automatic_run, 0, 10);
+  SCH_Add_Task(traffic_light_manual_run(), 5, 5);
   while (1)
   {
 //	  fsm_automatic_run();
 //	  traffic_light_manual_run();
-	  SCH_Dispatch_Tasks();
+	  SCH_Dispatch_Task();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -262,8 +259,8 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 	void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-		//timerRun();
-		//getKeyInput();
+		timerRun();
+		getKeyInput();
 		SCH_Update();
 	}
 /* USER CODE END 4 */

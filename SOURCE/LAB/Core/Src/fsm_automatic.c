@@ -84,6 +84,7 @@ void fsm_automatic_run(){
 			setTimer(4, 50);
 			setTimer(6, 100);
 			status[ODD] = MODE_2;
+			return;
 		}
 
 		break;
@@ -91,7 +92,7 @@ void fsm_automatic_run(){
 
 	case AUTO_GREEN:
 
-		HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, RESET);
+		//HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, RESET);
 
 		onGreen1();
 		onRed2();
@@ -147,6 +148,7 @@ void fsm_automatic_run(){
 			setTimer(4, 50);
 			setTimer(6, 100);
 			status[ODD] = MODE_2;
+			return;
 		}
 		break;
 
@@ -193,6 +195,7 @@ void fsm_automatic_run(){
 			setTimer(4, 50);
 			setTimer(6, 100);
 			status[ODD] = MODE_2;
+			return;
 		}
 		if(timerYellow1 == 0){
 			status[ODD] = INIT;
@@ -201,7 +204,6 @@ void fsm_automatic_run(){
 	default:
 		break;
 	}
-
 }
 
 
